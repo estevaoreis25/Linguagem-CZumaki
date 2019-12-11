@@ -1,3 +1,8 @@
+import Uzumaki
+
 while True:
     text = input('basic > ')
-    print(text)
+    result, error = Uzumaki.run('<stdin>', text)
+
+    if error: print(error.as_string())
+    else: print(result)
