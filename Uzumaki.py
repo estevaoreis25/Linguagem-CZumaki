@@ -126,7 +126,7 @@ KEYWORDS = [
 	'IF',
 	'ELIF',
 	'ELSE',
-	'FOR',
+	'KAGEBUNSHIN',  
 	'TO',
 	'STEP',
 	'WHILE',
@@ -540,7 +540,7 @@ class Parser:
 		if res.error:
 			return res.failure(InvalidSyntaxError(
 				self.current_tok.pos_start, self.current_tok.pos_end,
-				"Expected 'VAR', 'IF', 'FOR', 'WHILE', 'FUN', int, float, identifier, '+', '-', '(' or 'NOT'"
+				"Expected 'VAR', 'IF', 'KAGEBUNSHIN', 'WHILE', 'FUN', int, float, identifier, '+', '-', '(' or 'NOT'"
 			))
 
 		return res.success(node)
@@ -607,7 +607,7 @@ class Parser:
 				if res.error:
 					return res.failure(InvalidSyntaxError(
 						self.current_tok.pos_start, self.current_tok.pos_end,
-						"Expected ')', 'VAR', 'IF', 'FOR', 'WHILE', 'FUN', int, float, identifier, '+', '-', '(' or 'NOT'"
+						"Expected ')', 'VAR', 'IF', 'KAGEBUNSHIN', 'WHILE', 'FUN', int, float, identifier, '+', '-', '(' or 'NOT'"
 					))
 
 				while self.current_tok.type == TT_COMMA:
@@ -667,7 +667,7 @@ class Parser:
 			if res.error: return res
 			return res.success(if_expr)
 
-		elif tok.matches(TT_KEYWORD, 'FOR'):
+		elif tok.matches(TT_KEYWORD, 'KAGEBUNSHIN'):
 			for_expr = res.register(self.for_expr())
 			if res.error: return res
 			return res.success(for_expr)
@@ -684,7 +684,7 @@ class Parser:
 
 		return res.failure(InvalidSyntaxError(
 			tok.pos_start, tok.pos_end,
-			"Expected int, float, identifier, '+', '-', '(', 'IF', 'FOR', 'WHILE', 'FUN'"
+			"Expected int, float, identifier, '+', '-', '(', 'IF', 'KAGEBUNSHIN', 'WHILE', 'FUN'"
 		))
 
 	def if_expr(self):
@@ -749,10 +749,10 @@ class Parser:
 	def for_expr(self):
 		res = ParseResult()
 
-		if not self.current_tok.matches(TT_KEYWORD, 'FOR'):
+		if not self.current_tok.matches(TT_KEYWORD, 'KAGEBUNSHIN'):
 			return res.failure(InvalidSyntaxError(
 				self.current_tok.pos_start, self.current_tok.pos_end,
-				f"Expected 'FOR'"
+				f"Expected 'KAGEBUNSHIN'"
 			))
 
 		res.register_advancement()
