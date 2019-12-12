@@ -116,12 +116,12 @@ TT_LTE			= 'LTE'
 TT_GTE			= 'GTE'
 TT_COMMA			= 'COMMA'
 TT_ARROW			= 'ARROW'
-TT_EOF				= 'EOF'
+TT_EOF			= 'EOF'
 
 KEYWORDS = [
 	'VAR',
-	'AND',
-	'OR',
+	'HASHIRAMA',
+	'TOBIRAMA',
 	'KABUTO',
 	'MADARA',
 	'UCHIHA',
@@ -500,7 +500,7 @@ class Parser:
 		if not res.error and self.current_tok.type != TT_EOF:
 			return res.failure(InvalidSyntaxError(
 				self.current_tok.pos_start, self.current_tok.pos_end,
-				"Expected '+', '-', '*', '/', '^', '==', '!=', '<', '>', <=', '>=', 'AND' or 'OR'"
+				"Expected '+', '-', '*', '/', '^', '==', '!=', '<', '>', <=', '>=', 'HASHIRAMA' or 'TOBIRAMA'"
 			))
 		return res
 
@@ -535,7 +535,7 @@ class Parser:
 			if res.error: return res
 			return res.success(VarAssignNode(var_name, expr))
 
-		node = res.register(self.bin_op(self.comp_expr, ((TT_KEYWORD, 'AND'), (TT_KEYWORD, 'OR'))))
+		node = res.register(self.bin_op(self.comp_expr, ((TT_KEYWORD, 'HASHIRAMA'), (TT_KEYWORD, 'TOBIRAMA'))))
 
 		if res.error:
 			return res.failure(InvalidSyntaxError(
@@ -1337,9 +1337,9 @@ class Interpreter:
 			result, error = left.get_comparison_lte(right)
 		elif node.op_tok.type == TT_GTE:
 			result, error = left.get_comparison_gte(right)
-		elif node.op_tok.matches(TT_KEYWORD, 'AND'):
+		elif node.op_tok.matches(TT_KEYWORD, 'HASHIRAMA'):
 			result, error = left.anded_by(right)
-		elif node.op_tok.matches(TT_KEYWORD, 'OR'):
+		elif node.op_tok.matches(TT_KEYWORD, 'TOBIRAMA'):
 			result, error = left.ored_by(right)
 
 		if error:
