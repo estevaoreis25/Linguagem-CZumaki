@@ -7,7 +7,7 @@ from strings_with_arrows import *
 import string
 
 #######################################
-# CONSTANTS
+# CONSTANTES
 #######################################
 
 DIGITS = '0123456789'
@@ -15,7 +15,7 @@ LETTERS = string.ascii_letters
 LETTERS_DIGITS = LETTERS + DIGITS
 
 #######################################
-# ERRORS
+# CLASSES PARA TRATAMENTO DE ERROS
 #######################################
 
 class Error:
@@ -67,7 +67,7 @@ class RTError(Error):
 		return 'Traceback (most recent call last):\n' + result
 
 #######################################
-# POSITION
+# POSIÇÃO DO PROGRAMA 
 #######################################
 
 class Position:
@@ -95,25 +95,25 @@ class Position:
 # TOKENS
 #######################################
 
-TT_INT				= 'INT'
+TT_INT			= 'INT'
 TT_FLOAT    	= 'FLOAT'
-TT_STRING			= 'STRING'
+TT_STRING		= 'STRING'
 TT_IDENTIFIER	= 'IDENTIFIER'
 TT_KEYWORD		= 'KEYWORD'
 TT_PLUS     	= 'PLUS'
 TT_MINUS    	= 'MINUS'
 TT_MUL      	= 'MUL'
 TT_DIV      	= 'DIV'
-TT_POW				= 'POW'
-TT_EQ					= 'EQ'
+TT_POW			= 'POW'
+TT_EQ				= 'EQ'
 TT_LPAREN   	= 'LPAREN'
 TT_RPAREN   	= 'RPAREN'
-TT_EE					= 'EE'
-TT_NE					= 'NE'
-TT_LT					= 'LT'
-TT_GT					= 'GT'
-TT_LTE				= 'LTE'
-TT_GTE				= 'GTE'
+TT_EE				= 'EE'
+TT_NE				= 'NE'
+TT_LT				= 'LT'
+TT_GT				= 'GT'
+TT_LTE			= 'LTE'
+TT_GTE			= 'GTE'
 TT_COMMA			= 'COMMA'
 TT_ARROW			= 'ARROW'
 TT_EOF				= 'EOF'
@@ -155,7 +155,7 @@ class Token:
 		return f'{self.type}'
 
 #######################################
-# LEXER
+# LEXER OU TOKENIZAÇÃO
 #######################################
 
 class Lexer:
@@ -333,8 +333,9 @@ class Lexer:
 		return Token(tok_type, pos_start=pos_start, pos_end=self.pos)
 
 #######################################
-# NODES
+# NÓS
 #######################################
+#Classe para criar a representação do nó
 
 class NumberNode:
 	def __init__(self, tok):
@@ -449,7 +450,7 @@ class CallNode:
 			self.pos_end = self.node_to_call.pos_end
 
 #######################################
-# PARSE RESULT
+# VERIFICADOR DO PARSER
 #######################################
 
 class ParseResult:
@@ -479,7 +480,7 @@ class ParseResult:
 		return self
 
 #######################################
-# PARSER
+# PARSER OU ANÁLSE SINTÁTICA
 #######################################
 
 class Parser:
@@ -969,7 +970,7 @@ class RTResult:
 		return self
 
 #######################################
-# VALUES
+# TIPO DE VALORES
 #######################################
 
 class Value:
@@ -1226,7 +1227,7 @@ class Function(Value):
 		return f"<function {self.name}>"
 
 #######################################
-# CONTEXT
+# CONTEXTO QUE QUE O CODIGO SE ENCONTRA
 #######################################
 
 class Context:
@@ -1237,8 +1238,9 @@ class Context:
 		self.symbol_table = None
 
 #######################################
-# SYMBOL TABLE
+# TABELA DE SIMBOLOS
 #######################################
+## GUARDA OS SIMBOLOS GLOBAIS E DE VARIÁVEIS LOCAIS
 
 class SymbolTable:
 	def __init__(self, parent=None):
@@ -1258,7 +1260,7 @@ class SymbolTable:
 		del self.symbols[name]
 
 #######################################
-# INTERPRETER
+# INTERPRETADOR
 #######################################
 
 class Interpreter:
@@ -1456,13 +1458,17 @@ class Interpreter:
 		return res.success(return_value)
 
 #######################################
-# RUN
+# VARIÁVIES GLOBAIS
 #######################################
 
 global_symbol_table = SymbolTable()
 global_symbol_table.set("NULL", Number(0))
 global_symbol_table.set("FALSE", Number(0))
 global_symbol_table.set("TRUE", Number(1))
+
+#######################################
+# RUN
+#######################################
 
 def run(fn, text):
 	# Generate tokens
