@@ -18,3 +18,12 @@ Interpretador com palavras reservadas inspiradas em palavras e frases do anime j
       true = 'NARUTO'
       false = 'SASUKE'
       null = 'SAKURA'
+
+## Como Executar
+Necessário ter o python 3 instalado
+
+Abrir o terminal na pasta raiz do projeto e digitar o seguinte comando
+
+      $ python3 shell.py
+
+
