@@ -32,4 +32,9 @@ VAR j  = 0
 
 BUNSHIN j < 10 JUTSU j + 1
 
-  
+DATTEBAYO soma(a, b) -> a + b
+soma (5, 6)
+
+" Hello Word "
+" To " + "Certo "
+" To Certo " * 3 
