@@ -1462,7 +1462,7 @@ class Interpreter:
 #######################################
 
 global_symbol_table = SymbolTable()
-global_symbol_table.set("NULL", Number(0))
+global_symbol_table.set("SAKURA", Number(0))
 global_symbol_table.set("SASUKE", Number(0))
 global_symbol_table.set("NARUTO", Number(1))
 

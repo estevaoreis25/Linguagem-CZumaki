@@ -15,3 +15,6 @@ Compilador com palavras reservadas inspiradas em palavras e frases do anime japo
       then(faça isso no laço) = 'JUTSU'
       step(incremento do for) = 'KARA'
       while = 'BUNSHIN'
+      true = 'NARUTO'
+      false = 'SASUKE'
+      null = 'SAKURA'
